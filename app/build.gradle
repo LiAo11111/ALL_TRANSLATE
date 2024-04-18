@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.application'
+}
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+android {
+    namespace 'com.example.simpleocr'
+    compileSdk 34
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
+
+    defaultConfig {
+        applicationId "com.yangdai.simpleocr"
+        minSdk 28
+        targetSdk 34
+        versionCode 13
+        versionName '13'
+        resourceConfigurations += ["en", "de", "zh"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // CameraX core library using the camera2 implementation
+    def camerax_version = '1.4.0-alpha01'
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    // If you want to additionally use the CameraX Lifecycle library
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    // If you want to additionally use the CameraX View class
+    implementation "androidx.camera:camera-view:${camerax_version}"
+
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+
+    // To recognize Latin script
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+
+    // To recognize Chinese script
+    implementation 'com.google.mlkit:text-recognition-chinese:16.0.0'
+
+    // To recognize Devanagari script
+    implementation 'com.google.mlkit:text-recognition-devanagari:16.0.0'
+
+    // To recognize Japanese script
+    implementation 'com.google.mlkit:text-recognition-japanese:16.0.0'
+
+    // To recognize Korean script
+    implementation 'com.google.mlkit:text-recognition-korean:16.0.0'
+
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.github.YangDai2003:ImageViewLib:1.0.7'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.1'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    def room_version = '2.5.2'
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'cz.adaptech.tesseract4android:tesseract4android-openmp:4.4.0'
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.10'))
+
+    implementation 'com.github.yalantis:ucrop:2.2.8-native'
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.microsoft.onnxruntime:onnxruntime-android:1.16.3'
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+    implementation 'cn.hutool:hutool-json:5.8.21'
+
+}

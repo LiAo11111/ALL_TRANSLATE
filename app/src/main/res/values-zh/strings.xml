@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="photo">照片</string>
+    <string name="copy">复制</string>
+    <string name="ocr">扫描的文本:</string>
+    <string name="camera">相机</string>
+    <string name="album">相册</string>
+    <string name="cancel">取消</string>
+    <string name="app_name">ALL译</string>
+    <string name="copied">已复制</string>
+    <string name="processing...">处理中…</string>
+    <string name="confirm">确定</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
+    <string name="sure">确定要删除吗?</string>
+    <string name="edit">编辑</string>
+    <string name="source">使用方法</string>
+    <string name="content">功能:\n 1) 多引擎离线图片OCR，快速准确。可以在右上角选择要识别的语言\n 2) 扫描图像的历史记录，滑动可删除\n 3) 编辑，复制和分享扫描的文本\n 4) 根据设备自动切换浅色和深色模式，支持中文，英语和德语三种应用语言\n 5) Material Design3 视觉风格，拥有流畅的且符合直觉的动画，适配了预测性返回手势等新特性</string>
+    <string name="share">分享</string>
+    <string name="shareApp">分享此应用</string>
+    <string name="ask">请先允许访问许可！</string>
+    <string name="shareContent"> </string>
+    <string name="rate">给应用打分</string>
+    <string name="engine">选择语言 </string>
+    <string name="engineOptions1">中文</string>
+    <string name="engineOptions2">日语</string>
+    <string name="engineOptions3">韩语</string>
+    <string name="engineOptions4">英语</string>
+    <string name="engineOptions5">葡萄牙语</string>
+    <string name="engineOptions6">西班牙语</string>
+    <string name="engineOptions7">法语</string>
+    <string name="engineOptions8">德语</string>
+    <string name="engineOptions9">土耳其语</string>
+    <string name="engineOptions10">意大利语</string>
+    <string name="engineOptions11">克罗地亚语</string>
+    <string name="engineOptions12">捷克语</string>
+    <string name="engineOptions13">丹麦语</string>
+    <string name="engineOptions14">荷兰语</string>
+    <string name="engineOptions15">菲律宾语</string>
+    <string name="engineOptions16">芬兰语</string>
+    <string name="engineOptions17">匈牙利语</string>
+    <string name="engineOptions18">冰岛语</string>
+    <string name="engineOptions19">印度尼西亚语</string>
+    <string name="engineOptions20">马来语</string>
+    <string name="engineOptions21">越南语</string>
+    <string name="engineOptions22">塞尔维亚语</string>
+    <string name="engineOptions23">罗马尼亚语</string>
+    <string name="engineOptions24">瑞典语</string>
+    <string name="engineOptions25">印地语</string>
+    <string name="engineOptions26">尼泊尔语</string>
+    <string name="engineOptions27">马拉地语</string>
+
+
+    <string name="nothing">助手什么也没找到。</string>
+    <string name="ssid">服务集标识:</string>
+    <string name="password">密钥:</string>
+    <string name="title">标题:</string>
+    <string name="uri">网址链接:</string>
+    <string name="address">邮箱地址:</string>
+    <string name="body">电子邮件正文:</string>
+    <string name="phone">电话号码:</string>
+    <string name="appInfo">应用介绍</string>
+    <string name="deleteAll">清除全部记录</string>
+</resources>
