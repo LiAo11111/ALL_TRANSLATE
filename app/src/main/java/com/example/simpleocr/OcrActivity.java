@@ -65,6 +65,12 @@ import java.util.concurrent.Executors;
 
 import cn.hutool.json.JSONUtil;
 
+import com.tencentcloudapi.common.Credential;
+import com.tencentcloudapi.common.exception.TencentCloudSDKException;
+import com.tencentcloudapi.tmt.v20180321.TmtClient;
+import com.tencentcloudapi.tmt.v20180321.models.TextTranslateRequest;
+import com.tencentcloudapi.tmt.v20180321.models.TextTranslateResponse;
+
 /**
  * @author 30415
  */
@@ -85,20 +91,22 @@ public class OcrActivity extends AppCompatActivity {
     private boolean changed = false;
     TextRecognizer textRecognizer;
     private int engineNum;
-    private void translateOcr(String ocrText) {
+
+    private void translateOcrtozh(String ocrText) {
+        //将其他语言翻译成中文
         // 获取当前目标语言
         engineNum = getIntent().getIntExtra("engine", -1);
-        String src = "";
+        String src = "en";
         if (engineNum >= 0 && engineNum <= 26) {
             switch (engineNum) {
                 case 0:
                     src = "zh";
                     break;
                 case 1:
-                    src = "ja";
+                    src = "jp";
                     break;
                 case 2:
-                    src = "ko";
+                    src = "kor";
                     break;
                 case 3:
                     src = "en";
@@ -107,89 +115,107 @@ public class OcrActivity extends AppCompatActivity {
                     src = "pt";
                     break;
                 case 5:
-                    src = "es";
+                    src = "spa";
                     break;
                 case 6:
-                    src = "fr";
+                    src = "fra";
                     break;
                 case 7:
                     src = "de";
                     break;
                 case 8:
-                    src = "tr";
+                    src = "notsupport";
                     break;
                 case 9:
                     src = "it";
                     break;
                 case 10:
-                    src = "hr";
+                    src = "notsupport";
                     break;
                 case 11:
                     src = "cs";
                     break;
                 case 12:
-                    src = "da";
+                    src = "dan";
                     break;
                 case 13:
                     src = "nl";
                     break;
                 case 14:
-                    src = "fil";
+                    src = "notsupport";
                     break;
                 case 15:
-                    src = "fi";
+                    src = "fin";
                     break;
                 case 16:
                     src = "hu";
                     break;
                 case 17:
-                    src = "is";
+                    src = "notsupport";
                     break;
                 case 18:
-                    src = "id";
+                    src = "notsupport";
                     break;
                 case 19:
-                    src = "ms";
+                    src = "notsupport";
                     break;
                 case 20:
-                    src = "vi";
+                    src = "vie";
                     break;
                 case 21:
-                    src = "sr";
+                    src = "notsupport";
                     break;
                 case 22:
-                    src = "ro";
+                    src = "rom";
                     break;
                 case 23:
-                    src = "sv";
+                    src = "swe";
                     break;
                 case 24:
-                    src = "hi";
+                    src = "notsupport";
                     break;
                 case 25:
-                    src = "ne";
+                    src = "notsupport";
                     break;
                 case 26:
-                    src = "mr";
+                    src = "notsupport";
                     break;
                 default:
-                    src = "unknown";
+                    src = "notsupport";
                     break;
             }
         }
-
-
-
         // 执行翻译操作
-        Map<String, String> data = Map.of( "src", src, "tgt","zh" ,"text", ocrText);
-        Map response = OkHttpUtil.post("translate", JSONUtil.toJsonStr(data));
-        String result = Objects.requireNonNull(response.get("result")).toString();
+        if(src == "notsupport")
+        {
+            textView.setText(ocrText+"\n\n  翻译结果： \n\n " + "抱歉，当前不支持该语言的翻译功能");
+        }
+        else {
+            baidutranslation.baiduTranslation(ocrText, src, "zh", new baidutranslation.TranslationListener() {
+                @Override
+                public void onTranslationResult(String result) {
+                    // 处理翻译结果
+                    textView.setText(ocrText+"\n\n  翻译结果： \n\n " + result);
+                }
+            });
+        }
 
+        /*
 
-        String combinedText = ocrText + "\n\n  翻译结果： \n\n " + data+" \n\n \n\n \n\n \n\n";
-        textView.setText(combinedText);
+        translate.otherToZh(ocrText, src, new translate.TranslationListener() {
+            @Override
+            public void onTranslationResult(String result) {
+                // 处理翻译结果，例如更新 UI
+                //String combinedText = ocrText+"\n\n  翻译结果： \n\n " + result;
+                textView.setText(ocrText+"\n\n  翻译结果： \n\n " + result);
+            }
+        });*/
+
+        //String combinedText = ocrText+"\n\n  翻译结果： \n\n " + result;
+        //textView.setText(combinedText);
 
     }
+
 
     @Override
     public void finish() {
@@ -252,8 +278,8 @@ public class OcrActivity extends AppCompatActivity {
                 }
             }
         });
-        Button button=(Button)findViewById(R.id.translate_button);
-        button.setOnClickListener(view -> {
+        Button buttontranslate=(Button)findViewById(R.id.translate_button);
+        buttontranslate.setOnClickListener(view -> {
             String text = Objects.requireNonNull(textView.getText()).toString();
             //如果在文本中检测到了“translation result:”，按钮无效，不调用下面的翻译函数
 //            if (!text.contains("翻译结果：")) {
@@ -261,7 +287,7 @@ public class OcrActivity extends AppCompatActivity {
 //                translateOcr(text);
 //            }
             //在这里调用新的翻译OCR函数
-            translateOcr(text);
+            translateOcrtozh(text);
         });
     }
 
