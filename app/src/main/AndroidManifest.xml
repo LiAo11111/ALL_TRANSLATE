@@ -35,6 +35,22 @@
         android:localeConfig="@xml/locales_config"
         android:supportsRtl="true"
         tools:targetApi="tiramisu">
+
+        <activity
+            android:name=".register"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 添加注册界面的活动声明 -->
+        <activity
+            android:name=".login"
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CameraxActivity"
             android:exported="false"
@@ -61,11 +77,8 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <provider

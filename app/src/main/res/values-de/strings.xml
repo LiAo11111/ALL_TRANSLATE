@@ -60,4 +60,5 @@
     <string name="appInfo">Anwendungseinführung</string>
     <string name="deleteAll">Alle Datensätze löschen</string>
     <string name="write">输入</string>
+    <string name="existing_count">已有账号？前往登录</string>
 </resources>

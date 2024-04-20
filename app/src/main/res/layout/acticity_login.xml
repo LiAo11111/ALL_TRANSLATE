@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    android:orientation="vertical"
+    android:padding="40dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:orientation="horizontal">
+
+        <android.widget.Button
+            android:id="@+id/go_back_button"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:background="@drawable/pc_go_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_3"
+            android:gravity="center"
+            android:text="@string/existing_count"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="202dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@android:color/transparent"
+        android:src="@drawable/login_people" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="新用户"
+        android:textColor="#000000"
+        android:textSize="@dimen/sp_40"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:src="@drawable/mail" />
+
+        <EditText
+            android:id="@+id/phone_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="请输入您的手机号"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/sp_20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@android:color/transparent"
+            android:src="@drawable/key" />
+
+        <EditText
+            android:id="@+id/signup_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:maxEms="14"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="@dimen/sp_20" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dp_45"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@android:color/transparent"
+            android:src="@drawable/lock" />
+
+        <EditText
+            android:id="@+id/rp_signup_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:hint="请再次输入密码"
+            android:inputType="textPassword"
+            android:maxEms="14"
+            android:maxLines="1"
+            android:textColor="#000000"
+            android:textSize="@dimen/sp_20" />
+    </LinearLayout>
+
+
+    <android.widget.Button
+        android:id="@+id/try_signup_button"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_50"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_18"
+        android:background="@drawable/login_button_shape"
+        android:gravity="center"
+        android:text="注册"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -59,4 +59,5 @@
     <string name="appInfo">Application introduction</string>
     <string name="deleteAll">Clear all scan history</string>
     <string name="write">type in </string>
+    <string name="existing_count">已有账号？前往登录</string>
 </resources>
