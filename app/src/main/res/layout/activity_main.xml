@@ -46,6 +46,18 @@
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/write_btn"
+        style="@style/Widget.Material3.FloatingActionButton.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="25dp"
+        android:contentDescription="@string/write"
+        android:src="@drawable/baseline_edit_24"
+        android:visibility="gone"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/camera_btn"
         style="@style/Widget.Material3.FloatingActionButton.Secondary"
         android:layout_width="wrap_content"
@@ -68,6 +80,7 @@
         android:src="@drawable/baseline_insert_photo_24"
         android:visibility="gone"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button"/>
+
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit"

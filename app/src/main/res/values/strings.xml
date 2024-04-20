@@ -58,4 +58,5 @@
     <string name="phone">Phone number:</string>
     <string name="appInfo">Application introduction</string>
     <string name="deleteAll">Clear all scan history</string>
+    <string name="write">type in </string>
 </resources>

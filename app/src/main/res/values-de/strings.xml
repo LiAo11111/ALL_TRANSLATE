@@ -59,4 +59,5 @@
     <string name="phone">Handy Nummer:</string>
     <string name="appInfo">Anwendungseinführung</string>
     <string name="deleteAll">Alle Datensätze löschen</string>
+    <string name="write">输入</string>
 </resources>

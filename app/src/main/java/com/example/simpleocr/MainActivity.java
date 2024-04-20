@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     AppBarLayout appBarLayout;
     MaterialToolbar materialToolbar;
     RecyclerView recyclerView;
-    FloatingActionButton button, openCamera, openAlbum;
+    FloatingActionButton button, openCamera, openAlbum,write;
     SwipeRefreshLayout refresh;
     Room room;
     OcrListAdapter ocrListAdapter;
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         openCamera = findViewById(R.id.camera_btn);
         openAlbum = findViewById(R.id.album_btn);
         refresh = findViewById(R.id.refresh);
+        write = findViewById(R.id.write_btn);
 
         openCamera.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -96,8 +97,19 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("launch", "camera");
                 intent.putExtra("langs", LANG);
                 intent.putExtra("engine", engineNum);
+                // 添加一个整数参数,值为1时是中文翻译成其他语言，0时是其他语言翻译成中文
+                intent.putExtra("translate_option", 0);
                 intentActivityResultLauncher1.launch(intent);
             }
+        });
+        write.setOnClickListener(v -> {
+            Intent intent = new Intent(this, OcrActivity.class);
+            intent.putExtra("launch", "write");
+            intent.putExtra("langs", LANG);
+            intent.putExtra("engine", engineNum);
+            intent.putExtra("translate_option", 1);
+            intentActivityResultLauncher1.launch(intent);
+
         });
         openAlbum.setOnClickListener(v -> {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -109,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("launch", "album");
                 intent.putExtra("langs", LANG);
                 intent.putExtra("engine", engineNum);
+                intent.putExtra("translate_option", 0);
                 intentActivityResultLauncher1.launch(intent);
             }
         });
@@ -137,17 +150,21 @@ public class MainActivity extends AppCompatActivity {
     private void showOptions() {
         openCamera.setVisibility(View.VISIBLE);
         openAlbum.setVisibility(View.VISIBLE);
+        write.setVisibility(View.VISIBLE);
         animateViewTranslationY(openCamera, -getResources().getDisplayMetrics().density * 150);
         animateViewTranslationY(openAlbum, -getResources().getDisplayMetrics().density * 75);
+        animateViewTranslationX(write, -getResources().getDisplayMetrics().density * 75);
         button.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_clear_24));
     }
 
     private void hideOptions() {
         animateViewTranslationY(openCamera, 0f);
         animateViewTranslationY(openAlbum, 0f);
+        animateViewTranslationX(write, 0f);
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             openCamera.setVisibility(View.GONE);
             openAlbum.setVisibility(View.GONE);
+            write.setVisibility(View.GONE);
         }, 200);
         button.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.baseline_add_24));
     }

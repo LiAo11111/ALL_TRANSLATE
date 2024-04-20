@@ -2,7 +2,7 @@
 <resources>
     <string name="photo">照片</string>
     <string name="copy">复制</string>
-    <string name="ocr">扫描的文本:</string>
+    <string name="ocr">输入文本:</string>
     <string name="camera">相机</string>
     <string name="album">相册</string>
     <string name="cancel">取消</string>
@@ -15,7 +15,7 @@
     <string name="sure">确定要删除吗?</string>
     <string name="edit">编辑</string>
     <string name="source">使用方法</string>
-    <string name="content">功能:\n 1) 多引擎离线图片OCR，快速准确。可以在右上角选择要识别的语言\n 2) 扫描图像的历史记录，滑动可删除\n 3) 编辑，复制和分享扫描的文本\n 4) 根据设备自动切换浅色和深色模式，支持中文，英语和德语三种应用语言\n 5) Material Design3 视觉风格，拥有流畅的且符合直觉的动画，适配了预测性返回手势等新特性</string>
+    <string name="content">功能:\n 1) 多引擎离线图片OCR，快速准确。可以在右上角选择要识别的语言\n 2) 扫描图像的历史记录，滑动可删除\n 3) 编辑，复制和分享扫描的文本\n 4) 根据设备自动切换浅色和深色模式，支持中文，英语和德语三种应用语言\n 5) Material Design3 视觉风格，拥有流畅的且符合直觉的动画，适配了预测性返回手势等新特性\n 6)支持中文与其他语言的相互翻译</string>
     <string name="share">分享</string>
     <string name="shareApp">分享此应用</string>
     <string name="ask">请先允许访问许可！</string>
@@ -61,4 +61,5 @@
     <string name="phone">电话号码:</string>
     <string name="appInfo">应用介绍</string>
     <string name="deleteAll">清除全部记录</string>
+    <string name="write">输入</string>
 </resources>

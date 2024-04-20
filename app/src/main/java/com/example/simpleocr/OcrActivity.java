@@ -92,7 +92,130 @@ public class OcrActivity extends AppCompatActivity {
     TextRecognizer textRecognizer;
     private int engineNum;
 
-    private void translateOcrtozh(String ocrText) {
+    private void translatezhtoothers(String ocrText) {
+        //将中文翻译成其他语言
+        // 获取当前目标语言
+        engineNum = getIntent().getIntExtra("engine", -1);
+        String src = "en";
+        if (engineNum >= 0 && engineNum <= 26) {
+            switch (engineNum) {
+                case 0:
+                    src = "zh";
+                    break;
+                case 1:
+                    src = "jp";
+                    break;
+                case 2:
+                    src = "kor";
+                    break;
+                case 3:
+                    src = "en";
+                    break;
+                case 4:
+                    src = "pt";
+                    break;
+                case 5:
+                    src = "spa";
+                    break;
+                case 6:
+                    src = "fra";
+                    break;
+                case 7:
+                    src = "de";
+                    break;
+                case 8:
+                    src = "notsupport";
+                    break;
+                case 9:
+                    src = "it";
+                    break;
+                case 10:
+                    src = "notsupport";
+                    break;
+                case 11:
+                    src = "cs";
+                    break;
+                case 12:
+                    src = "dan";
+                    break;
+                case 13:
+                    src = "nl";
+                    break;
+                case 14:
+                    src = "notsupport";
+                    break;
+                case 15:
+                    src = "fin";
+                    break;
+                case 16:
+                    src = "hu";
+                    break;
+                case 17:
+                    src = "notsupport";
+                    break;
+                case 18:
+                    src = "notsupport";
+                    break;
+                case 19:
+                    src = "notsupport";
+                    break;
+                case 20:
+                    src = "vie";
+                    break;
+                case 21:
+                    src = "notsupport";
+                    break;
+                case 22:
+                    src = "rom";
+                    break;
+                case 23:
+                    src = "swe";
+                    break;
+                case 24:
+                    src = "notsupport";
+                    break;
+                case 25:
+                    src = "notsupport";
+                    break;
+                case 26:
+                    src = "notsupport";
+                    break;
+                default:
+                    src = "notsupport";
+                    break;
+            }
+        }
+        // 执行翻译操作
+        if(src == "notsupport")
+        {
+            textView.setText(ocrText+"\n\n  翻译结果： \n\n " + "抱歉，当前不支持该语言的翻译功能");
+        }
+        else {
+            baidutranslation.baiduTranslation(ocrText,  "zh",src, new baidutranslation.TranslationListener() {
+                @Override
+                public void onTranslationResult(String result) {
+                    // 处理翻译结果
+                    textView.setText(ocrText+"\n\n  翻译结果： \n\n " + result);
+                }
+            });
+        }
+
+        /*
+
+        translate.otherToZh(ocrText, src, new translate.TranslationListener() {
+            @Override
+            public void onTranslationResult(String result) {
+                // 处理翻译结果，例如更新 UI
+                //String combinedText = ocrText+"\n\n  翻译结果： \n\n " + result;
+                textView.setText(ocrText+"\n\n  翻译结果： \n\n " + result);
+            }
+        });*/
+
+        //String combinedText = ocrText+"\n\n  翻译结果： \n\n " + result;
+        //textView.setText(combinedText);
+
+    }
+    private void translateOtherstozh(String ocrText) {
         //将其他语言翻译成中文
         // 获取当前目标语言
         engineNum = getIntent().getIntExtra("engine", -1);
@@ -215,8 +338,6 @@ public class OcrActivity extends AppCompatActivity {
         //textView.setText(combinedText);
 
     }
-
-
     @Override
     public void finish() {
         String text = Objects.requireNonNull(textView.getText()).toString();
@@ -281,13 +402,23 @@ public class OcrActivity extends AppCompatActivity {
         Button buttontranslate=(Button)findViewById(R.id.translate_button);
         buttontranslate.setOnClickListener(view -> {
             String text = Objects.requireNonNull(textView.getText()).toString();
+            int additionalParamValue = getIntent().getIntExtra("translate_option", -1);
             //如果在文本中检测到了“translation result:”，按钮无效，不调用下面的翻译函数
-//            if (!text.contains("翻译结果：")) {
-//                // 在这里调用新的翻译OCR函数
-//                translateOcr(text);
-//            }
-            //在这里调用新的翻译OCR函数
-            translateOcrtozh(text);
+            if(!text.contains("翻译结果："))
+            {
+                if(additionalParamValue==0)
+                {
+                    translateOtherstozh(text);
+                }
+                else if(additionalParamValue==1)
+                {
+                    translatezhtoothers(text);
+                }
+                else if(additionalParamValue==-1)
+                {
+                    textView.setText(text+"\n\n  翻译结果： \n\n " + "翻译的源语言和目标语言错误");
+                }
+            }
         });
     }
 
@@ -399,12 +530,10 @@ public class OcrActivity extends AppCompatActivity {
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                 galleryActivityResultLauncher.launch(intent);
             }
-        } else if (getIntent().getStringExtra("launch") != null && "scancode".equals(getIntent().getStringExtra("launch"))) {
-            Intent intent = new Intent(this, CameraxActivity.class);
-            cameraxActivityResultLauncher.launch(intent);
+        } else if (getIntent().getStringExtra("launch") != null && "write".equals(getIntent().getStringExtra("launch"))) {
+            Intent intent = new Intent(this, EditActivity.class);
+            editActivityResultLauncher.launch(intent);
         }
-        //翻译功能
-
 
     }
 
