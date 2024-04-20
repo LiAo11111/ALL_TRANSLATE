@@ -352,29 +352,18 @@ public class OcrActivity extends AppCompatActivity {
             engineNum = getIntent().getIntExtra("engine", -1);
             if (engineNum == 0) {
                 textRecognizer =  TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
-                //String lang = getIntent().getStringExtra("langs");
-                //mTess = new TessBaseAPI();
-                //try {
-                //    mTess.init(getFilesDir().getAbsolutePath(), lang, TessBaseAPI.OEM_LSTM_ONLY);
-               // } catch (IllegalArgumentException ignored) {
-               // }
             } else if (engineNum == 1) {
-                //textRecognizer = TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
-                //textRecognizer = TextRecognition.getClient(new ChineseTextRecognizerOptions.Builder().build());
                 textRecognizer =  TextRecognition.getClient(new JapaneseTextRecognizerOptions.Builder().build());
-                //TextRecognizer textRecognizerGeneral = TextRecognition.getClient(new TextRecognition.Builder().build());
             } else if(engineNum==2){
                 textRecognizer =  TextRecognition.getClient(new KoreanTextRecognizerOptions.Builder().build());
             }  else if(engineNum>=3&&engineNum<=23){
-                //拉丁脚本，英语，法语，西班牙语，德语，葡萄牙语等
                 textRecognizer =  TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
             }else if(engineNum>=24&&engineNum<=26){
                 textRecognizer =  TextRecognition.getClient(new DevanagariTextRecognizerOptions.Builder().build());
             }else if(engineNum>=27){
-                //俄语、阿拉伯语、泰语、波斯语、乌尔都语等
+                //实际上是没有使用这个模型的，因为性能很差，备用
                 String lang = getIntent().getStringExtra("langs");
 
-                //String lang ="rus";
                 mTess = new TessBaseAPI();
                 try {
                     mTess.init(getFilesDir().getAbsolutePath(), lang, TessBaseAPI.OEM_LSTM_ONLY);
@@ -501,7 +490,7 @@ public class OcrActivity extends AppCompatActivity {
     private void getText(Bitmap bitmap) {
         textView.setText("");
         textView.setHint(R.string.processing___);
-        if (engineNum >=5) {
+        if (engineNum >=27) {
             ExecutorService executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
                 mTess.setImage(bitmap);
@@ -517,7 +506,7 @@ public class OcrActivity extends AppCompatActivity {
                 });
             });
             executor.shutdown();
-        } else if (engineNum >= 0&&engineNum <=4) {
+        } else if (engineNum >= 0&&engineNum <=26) {
             InputImage image = InputImage.fromBitmap(bitmap, 0);
             textRecognizer.process(image)
                     .addOnSuccessListener(visionText -> {
