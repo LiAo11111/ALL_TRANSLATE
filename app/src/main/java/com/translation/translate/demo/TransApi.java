@@ -1,4 +1,6 @@
-package com.baidu.translate.demo;
+package com.translation.translate.demo;
+
+import androidx.collection.CircularArray;
 
 import java.util.HashMap;
 import java.util.Map;

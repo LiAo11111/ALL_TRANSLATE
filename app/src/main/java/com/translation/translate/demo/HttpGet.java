@@ -1,4 +1,4 @@
-package com.baidu.translate.demo;
+package com.translation.translate.demo;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
