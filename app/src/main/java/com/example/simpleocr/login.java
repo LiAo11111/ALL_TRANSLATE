@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 public class login extends AppCompatActivity {
 
@@ -17,7 +18,6 @@ public class login extends AppCompatActivity {
     private EditText editTextConfirmPassword;
     private Button buttonRegister;
     private Button BACK;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class login extends AppCompatActivity {
         editTextPassword = findViewById(R.id.signup_password);
         editTextConfirmPassword = findViewById(R.id.rp_signup_password);
         buttonRegister = findViewById(R.id.try_signup_button);
-        BACK=findViewById(R.id.go_back_button);
+        BACK = findViewById(R.id.go_back_button);
 
         // 设置注册按钮的点击事件监听器
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -43,16 +43,22 @@ public class login extends AppCompatActivity {
                 // 检查用户名和密码是否为空
                 if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     Toast.makeText(login.this, "用户名和密码不能为空", Toast.LENGTH_SHORT).show();
+                } else if (!isValidPhoneNumber(username)) {
+                    // 检查手机号码格式是否正确
+                    Toast.makeText(login.this, "无效的手机号码", Toast.LENGTH_SHORT).show();
+                } else if (!isStrongPassword(password)) {
+                    // 检查密码强度
+                    Toast.makeText(login.this, "密码强度不够，必须包含至少6个字符，包括数字、字母和特殊字符", Toast.LENGTH_SHORT).show();
                 } else if (!password.equals(confirmPassword)) {
                     // 检查两次输入的密码是否一致
                     Toast.makeText(login.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
                 } else {
                     // 注册成功
                     registerSuccess(username, password);
-
                 }
             }
         });
+
         BACK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +70,19 @@ public class login extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    // 检查手机号码格式
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        String phonePattern = "^\\d{11}$"; // 假设手机号码是10位数字
+        return Pattern.matches(phonePattern, phoneNumber);
+    }
+
+    // 检查密码强度
+    private boolean isStrongPassword(String password) {
+        // 至少6个字符，包含数字、字母和特殊字符
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#\\$%^&*]).{6,}$";
+        return Pattern.matches(passwordPattern, password);
     }
 
     // 注册成功后调用保存用户名和密码到文件的方法
@@ -94,4 +113,3 @@ public class login extends AppCompatActivity {
         }
     }
 }
-
