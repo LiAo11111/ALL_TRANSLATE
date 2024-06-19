@@ -9,7 +9,7 @@ import com.google.android.material.color.DynamicColors;
 import com.yangdai.imageviewpro.ImageViewPro;
 
 /**
- * 用于展示放大图片
+ * 活动：在历史记录页面展示放大图片
  */
 public class PhotoActivity extends AppCompatActivity {
     ImageViewPro photoView;

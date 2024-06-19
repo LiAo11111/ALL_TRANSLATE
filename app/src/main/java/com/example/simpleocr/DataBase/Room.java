@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 import com.example.simpleocr.Model.OcrItem;
 
 /**
- * Room数据库创建
+ * Room数据库创建，用于存储历史记录信息
  */
 @Database(entities = OcrItem.class, version = 1, exportSchema = false)
 public abstract class Room extends RoomDatabase {

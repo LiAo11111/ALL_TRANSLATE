@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 /**
- * 数据库实体类，定义了数据库的items表，每一行为一个历史记录的信息
+ * 该类为数据库实体类，定义了数据库的items表，每一行为一个历史记录的信息
  */
 @Entity(tableName = "items")
 public class OcrItem implements Serializable {
@@ -23,7 +23,7 @@ public class OcrItem implements Serializable {
     @ColumnInfo(name = "date")
     String date = "";
 
-    // 图像
+    // 图像url
     @ColumnInfo(name = "image")
     String image = "";
 

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * 文件管理，包括图像文件和ocr模型文件
+ * 文件管理工具类，提供文件管理相关方法，包括图像文件和ocr模型文件
  */
 public class FileUtils {
     // 根据文件路径删除单个文件
